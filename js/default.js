@@ -25,6 +25,7 @@ TTS._soundEnabled = true;
 //TTS._timeTrialUnlocked = false;
 //TTS._kidsModeUnlocked = false;
 TTS._adsDisabled = false;
+TTS._appSettings;
 
 TTS.initialise = function () {
     TTS._bestScoreHard = TTS.getAppSetting("_bestScoreHard", 0);
@@ -170,6 +171,14 @@ TTS.windowsShareRequest = function (e) {
 TTS.getAppSetting = function (key, defaultValue) {
     var value = defaultValue;
 
+    if (!TTS._appSettings) {
+        TTS.loadSettings();
+    }
+
+    if (TTS._appSettings[key] !== undefined) {
+        value = TTS._appSettings[key];
+    }
+
     // Windows API reference
     if (typeof (Windows) !== "undefined") {
         var appSettings = Windows.Storage.ApplicationData.current.localSettings.values;
@@ -183,11 +192,32 @@ TTS.getAppSetting = function (key, defaultValue) {
 
 // Set a value to the apps saved data (specify to overwrite existing values or not)
 TTS.setAppSetting = function (key, value) {
+    if (!TTS._appSettings) {
+        TTS.loadSettings();
+    }
+
+    TTS._appSettings[key] = value;
+    TTS.saveSettings();
+
     // Windows API reference
     if (typeof (Windows) !== "undefined") {
         var appSettings = Windows.Storage.ApplicationData.current.localSettings.values;
         appSettings[key] = value;
     }
+}
+
+TTS.loadSettings = function () {
+    var settings = localStorage["touchTheShape"];
+    if (settings) {
+        TTS._appSettings = JSON.parse(settings);
+    }
+    else {
+        TTS._appSettings = {};
+    }
+}
+
+TTS.saveSettings = function () {
+    localStorage["touchTheShape"] = JSON.stringify(TTS._appSettings);
 }
 
 TTS.playSound = function (id) {
