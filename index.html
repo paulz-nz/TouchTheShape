@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Touch The Shape</title>
+
+    <!-- Icon -->
+    <!--<link rel="shortcut icon" href="images/favicon.ico" />-->
+
+    <!-- TouchTheShape references -->
+    <link href="css/default.css" rel="stylesheet" />
+</head>
+<body class="phone dark-theme" onload="TTS.initialise();">
+    <!--BEGIN SCREEN-->
+    <div class="screen">
+        <div class="banner blue-bg">
+            <div id="HOME" onclick="TTS.goHome();" class="header-button home left invisible"></div>
+            <div id="SOUND" onclick="TTS.toggleSound();" class="header-button sound right"></div>
+            <div id="HELP" onclick="TTS.openHelp();" class="header-button help right"></div>
+            <div id="HEADING" class="heading"><div class="logo"></div></div>
+        </div>
+        <div id="HOMESCREEN">
+            <div class="start-buttons">
+                <div onclick="TTS.start(1);" class="red-start-bg start-button-full">Original</div>
+                <div onclick="TTS.start(7);" class="orange-start-bg start-button-half float-left">Easy</div>
+                <div onclick="TTS.start(4);" class="yellow-start-bg start-button-half float-right">Time Trial</div>
+                <div onclick="TTS.start(2);" class="blue-start-bg start-button-full">Casual</div>
+
+                <div class="start-heading">Touch The Color</div>
+                <div onclick="TTS.start(5);" class="green-start-bg start-button-full">Original</div>
+                <div onclick="TTS.start(8);" class="orange-start-bg start-button-half float-left">Easy</div>
+                <div onclick="TTS.start(9);" class="yellow-start-bg start-button-half float-right">Time Trial</div>
+            </div>
+        </div>
+        <div id="PLAYSCREEN" class="hide">
+            <div class="middle-shape">
+                <div id="BLUECIRCLE" class="blue-circle hide"></div>
+                <div id="YELLOWCIRCLE" class="yellow-circle hide"></div>
+                <div id="REDCIRCLE" class="red-circle hide"></div>
+                <div id="GREENCIRCLE" class="green-circle hide"></div>
+
+                <div id="BLUESQUARE" class="blue-square hide"></div>
+                <div id="YELLOWSQUARE" class="yellow-square hide"></div>
+                <div id="REDSQUARE" class="red-square hide"></div>
+                <div id="GREENSQUARE" class="green-square hide"></div>
+
+                <div id="BLUETRIANGLE" class="blue-triangle hide"></div>
+                <div id="YELLOWTRIANGLE" class="yellow-triangle hide"></div>
+                <div id="REDTRIANGLE" class="red-triangle hide"></div>
+                <div id="GREENTRIANGLE" class="green-triangle hide"></div>
+
+                <div id="BLUESTAR" class="blue-star hide"></div>
+                <div id="YELLOWSTAR" class="yellow-star hide"></div>
+                <div id="REDSTAR" class="red-star hide"></div>
+                <div id="GREENSTAR" class="green-star hide"></div>
+            </div>
+            <div class="play-stats">
+                <span class="left" id="TIME">0.000</span>
+                <span class="right" id="SCORE">0</span>
+            </div>
+            <div id="HELPER"></div>
+            <div class="select-shapes">
+                <div onclick="TTS.selectShape('circle');" class="circle-button"></div>
+                <div onclick="TTS.selectShape('square');" class="square-button"></div>
+                <div onclick="TTS.selectShape('triangle');" class="triangle-button"></div>
+                <div onclick="TTS.selectShape('star');" class="star-button"></div>
+            </div>
+        </div>
+        <div id="GAMEOVERSCREEN" class="hide">
+            <div class="game-over-wrapper">
+                <div class="game-over">
+                    Game Over
+                </div>
+
+                <div id="ENDREASON" class="hide"></div>
+
+                <div class="end-stats">
+                    <div class="end-stats-mode">Mode:<br /><span id="LEVEL"></span></div>
+                    <div class="end-stats-score">Score:<br /><span id="ENDSCORE"></span></div>
+                    <div class="end-stats-score"><span id="NEWBESTSCORE">NEW!</span>Best:<br /><span id="BESTSCORE"></span></div>
+                </div>
+
+                <div class="end-buttons">
+                    <div onclick="TTS.start();" class="blue-end-bg">Try Again</div>
+                    <div onclick="TTS.share();" class="green-end-bg">Share</div>
+                </div>
+            </div>
+            <div class="light-box"></div>
+        </div>
+        <div id="HELPSCREEN" class="hide">
+            <div onclick="TTS.expandHelpNode(this);" class="help-node help-red help-node-expanded">
+                <div class="help-heading">
+                    <div class="help-heading-collapser"><span class="expand-help">+</span><span class="hide collapse-help">-</span></div>
+                    Original
+                </div>
+                <div class="help-highscore">High Score: <span id="HELPSHAPEHS">0</span></div>
+                <div class="help-about hide">
+                    Touch the correct shape before it disappears. The longer you last without touching the wrong shape, or letting the time run out, the higher your score. You only have 650ms for each shape. Ignore the colors!
+                </div>
+            </div>
+
+            <div onclick="TTS.expandHelpNode(this);" class="help-node help-orange">
+                <div class="help-heading">
+                    <div class="help-heading-collapser"><span class="expand-help">+</span><span class="hide collapse-help">-</span></div>
+                    Easy
+                </div>
+                <div class="help-highscore">High Score: <span id="HELPSHAPEEASYHS">0</span></div>
+                <div class="help-about hide">
+                    Similar to the original, although the shapes hang around for a little bit longer to give you more time to think about it before the time's up. You have 800ms to pick the correct shape.
+                </div>
+            </div>
+
+            <div onclick="TTS.expandHelpNode(this);" class="help-node help-yellow">
+                <div class="help-heading">
+                    <div class="help-heading-collapser"><span class="expand-help">+</span><span class="hide collapse-help">-</span></div>
+                    Time Trial
+                </div>
+                <div class="help-highscore">High Score: <span id="HELPTIMETRIALHS">0</span></div>
+                <div class="help-about hide">
+                    Take your time, try and get as many correct in 60 seconds as you can. Don't worry about shapes disappearing or selecting the wrong one, you won't lose but it will affect your score.
+                </div>
+            </div>
+
+            <div onclick="TTS.expandHelpNode(this);" class="help-node help-blue">
+                <div class="help-heading">
+                    <div class="help-heading-collapser"><span class="expand-help">+</span><span class="hide collapse-help">-</span></div>
+                    Casual
+                </div>
+                <div class="help-highscore">High Score: <span id="HELPCASUALHS">0</span></div>
+                <div class="help-about hide">
+                    This mode simply removes the confusion of changing colors, and at an easy pace. You've got 800ms to pick a shape, and the colors will always match the buttons. Good for beginners.
+                </div>
+            </div>
+
+            <div class="start-heading">Touch The Color</div>
+
+            <div onclick="TTS.expandHelpNode(this);" class="help-node help-green">
+                <div class="help-heading">
+                    <div class="help-heading-collapser"><span class="expand-help">+</span><span class="hide collapse-help">-</span></div>
+                    Original
+                </div>
+                <div class="help-highscore">High Score: <span id="HELPCOLOURHS">0</span></div>
+                <div class="help-about hide">
+                    Instead of matching shape to shape, you have to match color to color. Ignore the shapes completely, and try to focus on the matching colors. You have 650ms to select the color before it's game over.
+                </div>
+            </div>
+
+            <div onclick="TTS.expandHelpNode(this);" class="help-node help-orange">
+                <div class="help-heading">
+                    <div class="help-heading-collapser"><span class="expand-help">+</span><span class="hide collapse-help">-</span></div>
+                    Easy
+                </div>
+                <div class="help-highscore">High Score: <span id="HELPCOLOUREASYHS">0</span></div>
+                <div class="help-about hide">
+                    Similar to the original, you still have to match color to color, but you'll have a little bit longer to think about it. 800ms instead of 650ms.
+                </div>
+            </div>
+
+            <div onclick="TTS.expandHelpNode(this);" class="help-node help-yellow">
+                <div class="help-heading">
+                    <div class="help-heading-collapser"><span class="expand-help">+</span><span class="hide collapse-help">-</span></div>
+                    Time Trial
+                </div>
+                <div class="help-highscore">High Score: <span id="HELPCOLOURTIMETRAILHS">0</span></div>
+                <div class="help-about hide">
+                    You've got 60 seconds to match as many colors as you can. The faster you go, the higher your score. But if you get one wrong, you'll lose a point.
+                </div>
+            </div>
+
+            <div class="help-node help-stats">
+                <div class="help-heading">Stats</div>
+                <div class="help-stats-about">
+                    <div>Time Played: <span id="TOTALTIME">0</span></div>
+                    <div>Shapes Touched: <span id="TOTALTOUCHES">0</span></div>
+                    <div>Reaction Time: <span id="REACTIONTIME">0</span></div>
+                </div>
+            </div>
+            <div class="help-node help-ads hide" id="DISABLEADSWRAPPER">
+                <div class="disable-ads-button" onclick="TTS.displayUnlockMessage()">Disable Ads</div>
+            </div>
+        </div>
+        <div id="AD-WRAPPER" class="hide"></div>
+    </div>
+    <!--/END SCREEN-->
+
+    <!-- Windows Phone references -->
+    <script src="//Microsoft.Phone.WinJS.2.1/js/base.js"></script>
+    <script src="//Microsoft.Phone.WinJS.2.1/js/ui.js"></script>
+    <!--<script src="/js/winjs-ad.js"></script>-->
+
+    <!-- Windows App references -->
+    <!--<script src="//Microsoft.WinJS.2.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
+    <script src="/MSAdvertisingJS/ads/ad.js"></script>-->
+
+    <!-- TouchTheShape references -->
+    <script src="js/default.js"></script>
+
+    <audio class="hide" id="CORRECTSOUND" src="audio/blop.wav"></audio>
+    <audio class="hide" id="GAMEOVERSOUND" src="audio/punch.wav"></audio>
+</body>
+</html>
