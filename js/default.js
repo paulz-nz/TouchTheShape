@@ -67,6 +67,8 @@ TTS.initialise = function () {
             TTS.createWindowsAd();
         }
     }
+
+    TTS.preloadShapes();
 }
 
 TTS.createWindowsAd = function () {
@@ -836,4 +838,32 @@ TTS.getMode = function () {
             //case 3: return "Kids";
             //case 6: return "Practice";
     }
+}
+
+TTS._images = [];
+TTS.preloadImgs = function (imgs) {
+    for (var i = 0; i < imgs.length; i++) {
+        TTS._images[i] = new Image();
+        TTS._images[i].src = imgs[i];
+    }
+}
+TTS.preloadShapes = function () {
+    TTS.preloadImgs([
+        "images/circle-blue.png",
+        "images/circle-green.png",
+        "images/circle-red.png",
+        "images/circle-yellow.png",
+        "images/square-blue.png",
+        "images/square-green.png",
+        "images/square-red.png",
+        "images/square-yellow.png",
+        "images/star-blue.png",
+        "images/star-green.png",
+        "images/star-red.png",
+        "images/star-yellow.png",
+        "images/triangle-blue.png",
+        "images/triangle-green.png",
+        "images/triangle-red.png",
+        "images/triangle-yellow.png",
+    ]);
 }
