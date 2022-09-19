@@ -589,6 +589,9 @@
 .game-over-wrapper {
     z-index: 1001;
     margin: auto;
+    padding: 20px 40px;
+    box-shadow: 0px 0px 40px #000;
+    background-image: linear-gradient(to bottom right, #222, #333);
 }
 
 .hide {
