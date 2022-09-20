@@ -909,7 +909,7 @@ TTS.preloadShapes = function () {
 TTS.initDarkMode = function() {
     var isDarkMode = TTS.getAppSetting("_isDarkMode");
 
-    if (!isDarkMode) {
+    if (isDarkMode !== undefined && !isDarkMode) {
         TTS.toggleDarkMode();
     }
 }
