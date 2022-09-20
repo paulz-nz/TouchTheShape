@@ -28,17 +28,16 @@ body {
 
 .light-theme {
     background-color: aqua;
-    color: #003180;
+    color: #264880;
 }
 
 .light-theme .game-over-wrapper {
     background-image: linear-gradient(to bottom right, aqua, #a0c4ff);
     /* background-image: linear-gradient(to bottom right, #a0c4ff, #4D91FF); */
-    color: #004ECC;
 }
 
 .light-theme .end-stats {
-    border-color: #004ECC;
+    border-color: #264880;
 }
 
 .screen {
