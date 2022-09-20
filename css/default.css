@@ -146,13 +146,14 @@ body {
 
 .logo {
     margin: 0 auto;
-    height: 27pt;
+    height: 34pt;
     /* width: 141pt; */
     /* background-position: center; */
     /* background: url('../images/heading-logo.png') no-repeat; */
-    font-size: 22pt;
+    font-size: 24pt;
     -webkit-text-stroke: 6px #fff;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
+    text-align: center;
 }
 
 .start-buttons {
