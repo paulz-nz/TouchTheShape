@@ -41,7 +41,7 @@ body {
 }
 
 .light-theme .logo {
-    -webkit-text-stroke: 7px #222;   
+    -webkit-text-stroke: 7px #264880;   
 }
 
 .screen {
@@ -155,7 +155,7 @@ body {
     /* background-position: center; */
     /* background: url('../images/heading-logo.png') no-repeat; */
     font-size: 24pt;
-    -webkit-text-stroke: 7px #fff;
+    -webkit-text-stroke: 7px aqua;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
     text-align: center;
 }
