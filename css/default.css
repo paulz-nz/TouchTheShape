@@ -40,6 +40,10 @@ body {
     border-color: #264880;
 }
 
+.light-theme .logo {
+    -webkit-text-stroke: 7px #222;   
+}
+
 .screen {
     width: 100%;
     height: 100%;
@@ -151,7 +155,7 @@ body {
     /* background-position: center; */
     /* background: url('../images/heading-logo.png') no-repeat; */
     font-size: 24pt;
-    -webkit-text-stroke: 6px #fff;
+    -webkit-text-stroke: 7px #fff;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
     text-align: center;
 }
