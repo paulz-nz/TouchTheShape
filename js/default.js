@@ -28,6 +28,8 @@ TTS._adsDisabled = false;
 TTS._appSettings;
 
 TTS.initialise = function () {
+    TTS.initDarkMode();
+
     TTS._bestScoreHard = TTS.getAppSetting("_bestScoreHard", 0);
     TTS._bestScoreEasy = TTS.getAppSetting("_bestScoreEasy", 0);
     TTS._bestScoreTimeTrial = TTS.getAppSetting("_bestScoreTimeTrial", 0);
@@ -513,16 +515,16 @@ TTS.elem = function (id) {
 }
 
 TTS.resetTimer = function () {
-    var time = 650; // 0.65 seconds
+    var time = 700; // 0.7 seconds
 
     switch (TTS._mode) {
-        case 1: time = 650; break; // Touch The Shape: Classic
-        case 7: time = 800; break; // Touch The Shape: Easy
+        case 1: time = 700; break; // Touch The Shape: Classic
+        case 7: time = 1000; break; // Touch The Shape: Easy
         case 4: time = 60000; break; // Touch The Shape: Time Trial
-        case 5: time = 650; break; // Touch The Colour: Classic
-        case 8: time = 800; break; // Touch The Colour: Easy
+        case 5: time = 700; break; // Touch The Colour: Classic
+        case 8: time = 1000; break; // Touch The Colour: Easy
         case 9: time = 60000; break; // Touch The Colour: Time Trial
-        case 2: time = 800; break; // Casual
+        case 2: time = 1000; break; // Casual
             //case 3: time = 2000; break; // Touch The Shape (Kids)
             //case 6: time = 0; break; // Practice (no limit)
     }
@@ -543,15 +545,19 @@ TTS.setShape = function () {
         TTS._currentColour = TTS.getMatchingColour(TTS._currentShape);
     }
 
-    var current = document.getElementsByClassName("current-shape");
-    if (current.length > 0) {
-        current[0].classList.add("hide");
-        current[0].classList.remove("current-shape");
-    }
+    var shapeDiv = TTS.elem("SHAPE");
+    shapeDiv.removeAttribute("class"); // Clear current colour and shape
+    shapeDiv.classList.add(TTS._currentColour, TTS._currentShape);
 
-    var newShape = document.getElementById((TTS._currentColour + TTS._currentShape).toUpperCase());
-    newShape.classList.add("current-shape");
-    newShape.classList.remove("hide");
+    // var current = document.getElementsByClassName("current-shape");
+    // if (current.length > 0) {
+    //     current[0].classList.add("hide");
+    //     current[0].classList.remove("current-shape");
+    // }
+
+    // var newShape = document.getElementById((TTS._currentColour + TTS._currentShape).toUpperCase());
+    // newShape.classList.add("current-shape");
+    // newShape.classList.remove("hide");
 
     // Reset opacity
     TTS.updateShapeOpacity();
@@ -733,7 +739,8 @@ TTS.updateShapeOpacity = function () {
 
 // 0=Invisible, 1=Visible
 TTS.setCurrentShapeOpacity = function (opacity) {
-    document.getElementsByClassName("current-shape")[0].style.opacity = opacity;
+    TTS.elem("SHAPE").style.opacity = opacity;
+    //document.getElementsByClassName("current-shape")[0].style.opacity = opacity;
 }
 
 TTS.gameOver = function () {
@@ -896,4 +903,32 @@ TTS.preloadShapes = function () {
         "images/triangle-red.png",
         "images/triangle-yellow.png",
     ]);
+}
+
+
+TTS.initDarkMode = function() {
+    var isDarkMode = TTS.getAppSetting("_isDarkMode");
+
+    if (!isDarkMode) {
+        TTS.toggleDarkMode();
+    }
+}
+
+TTS.toggleDarkMode = function () {
+    var toggle = document.querySelector(".darkmode");
+    var wasLightMode = toggle.classList.contains("toggle");
+    var body = document.querySelector("body");
+
+    if (wasLightMode) {
+        toggle.classList.remove("toggle");
+        body.classList.add("dark-theme");
+        body.classList.remove("light-theme");
+    }
+    else {
+        toggle.classList.add("toggle");
+        body.classList.remove("dark-theme");
+        body.classList.add("light-theme");
+    }
+
+    TTS.setAppSetting("_isDarkMode", wasLightMode)
 }

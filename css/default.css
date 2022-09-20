@@ -1,5 +1,6 @@
-﻿html, body {
-    font-family: Arial;
+﻿html,
+body {
+    font-family: Calibri, Arial, sans-serif;
     width: 100%;
     height: 100%;
     padding: 0;
@@ -18,13 +19,26 @@
 }
 
 .dark-theme {
-    background: url(../images/dark-bg.png) repeat-x #161616;
-    color: white;
+    background-color: #252525;
+    color: aqua;
+}
+.dark-theme .banner {
+    background-image: linear-gradient(to bottom, #264880, #004ECC);
 }
 
 .light-theme {
-    background: url(../images/light-bg.png) repeat-x white;
-    color: black;
+    background-color: aqua;
+    color: #003180;
+}
+
+.light-theme .game-over-wrapper {
+    background-image: linear-gradient(to bottom right, aqua, #a0c4ff);
+    /* background-image: linear-gradient(to bottom right, #a0c4ff, #4D91FF); */
+    color: #004ECC;
+}
+
+.light-theme .end-stats {
+    border-color: #004ECC;
 }
 
 .screen {
@@ -63,8 +77,8 @@
 
 .banner {
     width: 100%;
-    height: 44pt;
-    background: url(../images/banner-bg.png) repeat-x;
+    height: 46pt;
+    background-image: linear-gradient(to bottom, #0061FF, #418AFF);
 }
 
 .header-button {
@@ -75,26 +89,50 @@
 
 .home {
     width: 65pt;
-    background: url('../images/home.png') no-repeat;
+    background-image: linear-gradient(to bottom, #418AFF, #0061FF);
+    /* border: 1px solid #fff; */
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px #0009;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 .sound {
     width: 30pt;
-    margin-left: 0;
+    margin-top: 10pt;
     margin-right: 6pt;
-    background: url('../images/sound-enabled.png') no-repeat;
+    background: url('../images/sound-enabled.svg') no-repeat;
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.darkmode {
+    width: 30pt;
+    margin-right: 6pt;
+    background: url('../images/dark-mode.svg') no-repeat;
+    cursor: pointer;
+    filter: invert(1);
+    transition: all 0.3s;
+}
+
+.darkmode.toggle {
+    transform: rotate(180deg);
 }
 
 .help {
     width: 30pt;
     margin-left: 0;
     margin-right: 6pt;
-    background: url('../images/help.png') no-repeat;
+    background: url('../images/help.svg') no-repeat;
+    filter: invert(1);
+    cursor: pointer;
 }
 
 /* Used by JS */
 .sound-disabled {
-    background-image: url('../images/sound-disabled.png');
+    background-image: url('../images/sound-disabled.svg');
 }
 
 .heading {
@@ -104,21 +142,23 @@
     /*width: calc(100% - 80pt);*/
     width: 100%;
     text-align: center;
-    padding-top: 10pt;
+    padding-top: 7pt;
 }
 
 .logo {
-    width: 141pt;
-    height: 27pt;
-    background-position: center;
-    background: url('../images/heading-logo.png') no-repeat;
     margin: 0 auto;
+    height: 27pt;
+    /* width: 141pt; */
+    /* background-position: center; */
+    /* background: url('../images/heading-logo.png') no-repeat; */
+    font-size: 22pt;
+    -webkit-text-stroke: 6px #fff;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
 .start-buttons {
     text-align: center;
     vertical-align: middle;
-    color: white;
     width: 246pt;
     margin: 0 auto;
     margin-top: 20pt;
@@ -131,6 +171,12 @@
     clear: both;
     line-height: 57pt;
     margin-bottom: 7pt;
+    border-radius: 10px;
+    /* border: 2px solid #fff; */
+    box-sizing: border-box;
+    cursor: pointer;
+    box-shadow: 2px 2px 8px #0009;
+    color: white;
 }
 
 .start-button-half {
@@ -139,11 +185,16 @@
     height: 57pt;
     line-height: 57pt;
     margin-bottom: 7pt;
+    border-radius: 10px;
+    /* border: 2px solid #fff; */
+    box-sizing: border-box;
+    cursor: pointer;
+    box-shadow: 2px 2px 8px #0009;
+    color: white;
 }
 
 .start-heading {
     font-size: 16pt;
-    color: white;
     text-align: center;
     margin: 20pt 0 4pt 0;
 }
@@ -153,33 +204,36 @@
     font-size: 26pt;
 }
 
-    .play-stats span {
-        width: 82pt;
-        margin-bottom: 8pt;
-    }
+.play-stats span {
+    width: 82pt;
+    margin-bottom: 8pt;
+}
 
 .middle-shape {
     flex: 1;
 }
 
-    .middle-shape div {
-        width: 230pt;
-        height: 100%;
-        font-size: 246pt;
-        text-align: center;
-        margin: 0 auto;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
+.middle-shape div {
+    width: 230pt;
+    height: 100%;
+    font-size: 246pt;
+    text-align: center;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
 #HELPER {
     width: 135pt;
     height: 45pt;
     padding: 8pt;
     position: absolute;
-    background: url(../images/helper-bg.png) no-repeat;
+    background-image: linear-gradient(to bottom, #418AFF, #0061FF);
+    border: 2px solid #fff;
+    border-radius: 10px;
     bottom: 85pt;
-    left: 100pt;
+    left: 120pt;
+    color: #fff;
 }
 
 .select-shapes {
@@ -187,20 +241,23 @@
     clear: both;
     width: 100%;
     height: 79pt;
-    background: url(../images/buttons-bg.png) repeat-x #636363;
+    border-top: 2px solid #8383837a;
+    /* background-image: linear-gradient(to bottom, #0061ff9c, #0061ff00); */
 }
 
-    /*.select-shapes input {
+/*.select-shapes input {
         width: 24%;
         height: 57pt;
         background-color: #999999;
     }*/
 
-    .select-shapes div {
-        float: left;
-        width: 25%;
-        height: 100%;
-    }
+.select-shapes div {
+    float: left;
+    width: 25%;
+    height: 100%;
+    display: flex;
+    cursor: pointer;
+}
 
 .game-over {
     font-size: 32pt;
@@ -213,13 +270,14 @@
     height: 110pt;
     margin: 0 auto;
     padding: 10pt;
-    background: url(../images/end-stats-bg.png) no-repeat;
+    /* background-image: linear-gradient(to top, #0061FF, #418AFF); */
+    border: 1px solid aqua;
+    /* border-radius: 10px; */
 }
 
 .end-stats-mode {
     padding: 8pt;
     width: 80pt;
-    color: black;
     height: 100%;
     float: left;
     text-align: left;
@@ -228,17 +286,16 @@
 .end-stats-score {
     padding: 8pt;
     width: 53pt;
-    color: black;
     float: right;
     text-align: right;
 }
 
-    .end-stats span {
-        font-size: 18pt;
-        color: white;
-    }
+.end-stats span {
+    font-size: 18pt;
+}
 
-#ENDSCORE, #BESTSCORE {
+#ENDSCORE,
+#BESTSCORE {
     font-size: 24pt;
 }
 
@@ -263,7 +320,7 @@
 #NEWBESTSCORE {
     padding-right: 4pt;
     font-size: 7pt;
-    color: yellow;
+    color: goldenrod;
 }
 
 .end-buttons {
@@ -274,23 +331,29 @@
     color: white;
 }
 
-    .end-buttons div {
-        width: 82pt;
-        height: 41pt;
-        margin: 8pt auto;
-        line-height: 41pt;
-    }
-
-.blue-end-bg {
-    background: url('../images/blue-end-bg.png') no-repeat;
-    background-position: center;
-    float: left;
+.end-buttons div {
+    width: 82pt;
+    height: 41pt;
+    margin: 8pt auto;
+    line-height: 41pt;
 }
 
-.green-end-bg {
-    background: url('../images/green-end-bg.png') no-repeat;
-    background-position: center;
+.tryagain-end-bg {
+    background-image: linear-gradient(to bottom, #418AFF, #0061FF);
+    border-radius: 10px;
+    /* border: 1px solid #fff; */
+    box-shadow: 2px 2px 8px #0009;
+    float: left;
+    cursor: pointer;
+}
+
+.share-end-bg {
+    background-image: linear-gradient(to bottom, #00A000, #007800);
+    border-radius: 10px;
+    /* border: 1px solid #fff; */
+    box-shadow: 2px 2px 8px #0009;
     float: right;
+    cursor: pointer;
 }
 
 .blue-bg {
@@ -303,29 +366,24 @@
     color: white;
 }
 
-.red-start-bg {
-    background: url('../images/red-start-bg2.png') no-repeat;
-    background-position: center;
+.red-start-bg, .help-red {
+    background-image: linear-gradient(to bottom, #ff1818, #8D0F0F);
 }
 
-.yellow-start-bg {
-    background: url('../images/yellow-start-bg2.png') no-repeat;
-    background-position: center;
+.yellow-start-bg, .help-yellow {
+    background-image: linear-gradient(to bottom, #FFBF41, #FFAA00);
 }
 
-.green-start-bg {
-    background: url('../images/green-start-bg2.png') no-repeat;
-    background-position: center;
+.green-start-bg, .help-green {
+    background-image: linear-gradient(to bottom, #00A000, #007800);
 }
 
-.blue-start-bg {
-    background: url('../images/blue-start-bg2.png') no-repeat;
-    background-position: center;
+.blue-start-bg, .help-blue {
+    background-image: linear-gradient(to bottom, #418AFF, #0061FF);
 }
 
-.orange-start-bg {
-    background: url('../images/orange-start-bg2.png') no-repeat;
-    background-position: center;
+.orange-start-bg, .help-orange {
+    background-image: linear-gradient(to bottom, #FF3F00, #CA3A00);
 }
 
 .yellow-bg {
@@ -343,107 +401,9 @@
     color: white;
 }
 
-.circle-button {
-    background: url('../images/circle-button.png') no-repeat;
-    background-position: center;
-}
 
-.square-button {
-    background: url('../images/square-button.png') no-repeat;
-    background-position: center;
-}
-
-.triangle-button {
-    background: url('../images/triangle-button.png') no-repeat;
-    background-position: center;
-}
-
-.star-button {
-    background: url('../images/star-button.png') no-repeat;
-    background-position: center;
-}
-
-.blue-circle {
-    background: url('../images/circle-blue.png') no-repeat;
-    background-position: center;
-}
-
-.yellow-circle {
-    background: url('../images/circle-yellow.png') no-repeat;
-    background-position: center;
-}
-
-.red-circle {
-    background: url('../images/circle-red.png') no-repeat;
-    background-position: center;
-}
-
-.green-circle {
-    background: url('../images/circle-green.png') no-repeat;
-    background-position: center;
-}
-
-.blue-square {
-    background: url('../images/square-blue.png') no-repeat;
-    background-position: center;
-}
-
-.yellow-square {
-    background: url('../images/square-yellow.png') no-repeat;
-    background-position: center;
-}
-
-.red-square {
-    background: url('../images/square-red.png') no-repeat;
-    background-position: center;
-}
-
-.green-square {
-    background: url('../images/square-green.png') no-repeat;
-    background-position: center;
-}
-
-.blue-triangle {
-    background: url('../images/triangle-blue.png') no-repeat;
-    background-position: center;
-}
-
-.yellow-triangle {
-    background: url('../images/triangle-yellow.png') no-repeat;
-    background-position: center;
-}
-
-.red-triangle {
-    background: url('../images/triangle-red.png') no-repeat;
-    background-position: center;
-}
-
-.green-triangle {
-    background: url('../images/triangle-green.png') no-repeat;
-    background-position: center;
-}
-
-.blue-star {
-    background: url('../images/star-blue.png') no-repeat;
-    background-position: center;
-}
-
-.red-star {
-    background: url('../images/star-red.png') no-repeat;
-    background-position: center;
-}
-
-.yellow-star {
-    background: url('../images/star-yellow.png') no-repeat;
-    background-position: center;
-}
-
-.green-star {
-    background: url('../images/star-green.png') no-repeat;
-    background-position: center;
-}
-
-.ad, #AD-WRAPPER {
+.ad,
+#AD-WRAPPER {
     /*width: 100%;
     height: 60pt;*/
     margin: 0 auto;
@@ -476,30 +436,32 @@
 
 .help-node {
     width: 246pt;
-    margin: -3pt auto;
-    padding: 4pt 8pt 8pt 8pt;
-    border: 3pt solid white;
+    /* margin: -3pt auto; */
+    padding: 12pt;
+    padding-top: 6pt;
+    /* border: 3pt solid white; */
     height: 12pt;
     -webkit-transition: height 0.3s;
     transition: height 0.3s;
     overflow: hidden;
+    color: #fff;
 }
 
 .help-node-expanded {
     height: 60pt;
 }
 
-    .help-node-expanded .help-about {
-        display: block !important;
-    }
+.help-node-expanded .help-about {
+    display: block !important;
+}
 
-    .help-node-expanded .expand-help {
-        display: none;
-    }
+.help-node-expanded .expand-help {
+    display: none;
+}
 
-    .help-node-expanded .collapse-help {
-        display: inline;
-    }
+.help-node-expanded .collapse-help {
+    display: inline;
+}
 
 .help-heading-collapser {
     width: 18pt;
@@ -520,13 +482,14 @@
     float: right;
 }
 
-    .help-highscore span {
-        font-size: 14pt;
-    }
+.help-highscore span {
+    font-size: 14pt;
+}
 
 .help-about {
     clear: both;
     font-size: 10pt;
+    font-weight: lighter;
 }
 
 .help-red {
@@ -552,6 +515,8 @@
 .help-stats {
     height: 42pt;
     margin-top: 20pt;
+    background-color: #444;
+    background-image: linear-gradient(to bottom, #666, #444);
 }
 
 .help-stats-about {
@@ -560,15 +525,15 @@
     font-size: 10pt;
 }
 
-    .help-stats-about div {
-        margin: 3pt;
-    }
+.help-stats-about div {
+    margin: 3pt;
+}
 
-    .help-stats-about span {
-        float: right;
-        font-size: 12pt;
-        margin-top: -1pt;
-    }
+.help-stats-about span {
+    float: right;
+    font-size: 12pt;
+    margin-top: -1pt;
+}
 
 .help-ads {
     background-color: #0262FF;
@@ -590,10 +555,25 @@
     z-index: 1001;
     margin: auto;
     padding: 20px 40px;
-    box-shadow: 0px 0px 40px #000;
-    background-image: linear-gradient(to bottom right, #0039ff, #00c0ff);
-    border: 2px solid #fff;
-    border-radius: 12px;
+    box-shadow: 0px 0px 40px #0000009e;
+    background-image: linear-gradient(to bottom right, #415b86, #264880);
+    color: aqua;
+    /* background-image: linear-gradient(to bottom right, #0039ff, #00c0ff); */
+    /* border: 2px solid #fff; */
+    /* border-radius: 12px; */
+    position: relative;
+}
+
+.game-over-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 16pt;
+    height: 16pt;
+    font-size: 20pt;
+    cursor: pointer;
+    font-weight: lighter;
+    font-family: monospace;
 }
 
 .hide {
@@ -602,4 +582,56 @@
 
 .invisible {
     visibility: hidden;
+}
+
+#SHAPE {
+    height: 100%;
+    width: 100%;
+}
+
+.select-shapes svg {
+    height: 60px;
+    width: 60px;
+    margin: auto;
+}
+
+svg.circle,
+svg.square,
+svg.triangle,
+svg.star {
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linejoin: round;
+}
+
+svg.circle circle.circle {
+    display: block;
+}
+
+svg.square polygon.square {
+    display: block;
+}
+
+svg.triangle polygon.triangle {
+    display: block;
+}
+
+svg.star polygon.star {
+    display: block;
+}
+
+svg.blue {
+    fill: url(#bluegrad);
+}
+
+svg.yellow {
+    fill: url(#yellowgrad);
+}
+
+svg.red {
+    fill: url(#redgrad);
+}
+
+svg.green {
+    fill: url(#greengrad);
 }

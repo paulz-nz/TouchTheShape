@@ -9,15 +9,17 @@
 
     <!-- TouchTheShape references -->
     <link href="css/default.css" rel="stylesheet" />
+    <script src="js/default.js"></script>
 </head>
 <body class="phone dark-theme" onload="TTS.initialise();">
     <!--BEGIN SCREEN-->
     <div class="screen">
         <div class="banner blue-bg">
-            <div id="HOME" onclick="TTS.goHome();" class="header-button home left invisible"></div>
+            <div id="HOME" onclick="TTS.goHome();" class="header-button home left invisible">Home</div>
             <div id="SOUND" onclick="TTS.toggleSound();" class="header-button sound right"></div>
+            <div id="DARKMODE" onclick="TTS.toggleDarkMode();" class="header-button darkmode right"></div>
             <div id="HELP" onclick="TTS.openHelp();" class="header-button help right"></div>
-            <div id="HEADING" class="heading"><div class="logo"></div></div>
+            <div id="HEADING" class="heading"><div class="logo">Touch The Shape</div></div>
         </div>
         <div id="HOMESCREEN">
             <div class="start-buttons">
@@ -34,25 +36,32 @@
         </div>
         <div id="PLAYSCREEN" class="playScreen hide">
             <div class="middle-shape">
-                <div id="BLUECIRCLE" class="blue-circle hide"></div>
-                <div id="YELLOWCIRCLE" class="yellow-circle hide"></div>
-                <div id="REDCIRCLE" class="red-circle hide"></div>
-                <div id="GREENCIRCLE" class="green-circle hide"></div>
-
-                <div id="BLUESQUARE" class="blue-square hide"></div>
-                <div id="YELLOWSQUARE" class="yellow-square hide"></div>
-                <div id="REDSQUARE" class="red-square hide"></div>
-                <div id="GREENSQUARE" class="green-square hide"></div>
-
-                <div id="BLUETRIANGLE" class="blue-triangle hide"></div>
-                <div id="YELLOWTRIANGLE" class="yellow-triangle hide"></div>
-                <div id="REDTRIANGLE" class="red-triangle hide"></div>
-                <div id="GREENTRIANGLE" class="green-triangle hide"></div>
-
-                <div id="BLUESTAR" class="blue-star hide"></div>
-                <div id="YELLOWSTAR" class="yellow-star hide"></div>
-                <div id="REDSTAR" class="red-star hide"></div>
-                <div id="GREENSTAR" class="green-star hide"></div>
+                <div>
+                    <svg id="SHAPE" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 123 123">
+                        <circle class="circle hide" cx="61" cy="61" r="59"/>
+                        <polygon class="square hide" points="3,3 119,3 119,119 3,119 3,3"/>   
+                        <polygon class="triangle hide" points="61,3 119,119 3,119 61,3"/>
+                        <polygon class="star hide" points="61,3 75,44 119,44 84,71 100,119 61,89 22,119 38,71 3,44 47,44 61,3"/>
+                        <defs>
+                            <linearGradient id="bluegrad" x2="1" y2="2">
+                                <stop offset="0" stop-color="#418AFF" />
+                                <stop offset="1" stop-color="#0061FF" />
+                            </linearGradient>
+                            <linearGradient id="yellowgrad" x2="1" y2="2">
+                                <stop offset="0" stop-color="#FFBF41" />
+                                <stop offset="1" stop-color="#FFAA00" />
+                            </linearGradient>
+                            <linearGradient id="redgrad" x2="1" y2="2">
+                                <stop offset="0" stop-color="#8C2323" />
+                                <stop offset="1" stop-color="#8D0F0F" />
+                            </linearGradient>
+                            <linearGradient id="greengrad" x2="1" y2="2">
+                                <stop offset="0" stop-color="#00A000" />
+                                <stop offset="1" stop-color="#007800" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
             </div>
             <div class="play-stats">
                 <span class="left" id="TIME">0.000</span>
@@ -60,33 +69,51 @@
             </div>
             <div id="HELPER"></div>
             <div class="select-shapes">
-                <div onclick="TTS.selectShape('circle');" class="circle-button"></div>
-                <div onclick="TTS.selectShape('square');" class="square-button"></div>
-                <div onclick="TTS.selectShape('triangle');" class="triangle-button"></div>
-                <div onclick="TTS.selectShape('star');" class="star-button"></div>
-            </div>
-
-        <div id="GAMEOVERSCREEN" class="gameOverScreen hide">
-            <div class="game-over-wrapper">
-                <div class="game-over">
-                    Game Over
+                <div onclick="TTS.selectShape('circle');" class="circle-button">
+                    <svg class="blue circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 123 123">
+                        <circle class="circle" cx="61" cy="61" r="59"/>
+                    </svg>
                 </div>
-
-                <div id="ENDREASON" class="hide"></div>
-
-                <div class="end-stats">
-                    <div class="end-stats-mode">Mode:<br /><span id="LEVEL"></span></div>
-                    <div class="end-stats-score">Score:<br /><span id="ENDSCORE"></span></div>
-                    <div class="end-stats-score"><span id="NEWBESTSCORE">NEW!</span>Best:<br /><span id="BESTSCORE"></span></div>
+                <div onclick="TTS.selectShape('square');" class="square-button">
+                    <svg class="yellow square" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 123 123">
+                        <polygon class="square" points="3,3 119,3 119,119 3,119 3,3"/>   
+                    </svg>
                 </div>
-
-                <div class="end-buttons">
-                    <div onclick="TTS.start();" class="blue-end-bg">Try Again</div>
-                    <div onclick="TTS.share();" class="green-end-bg">Share</div>
+                <div onclick="TTS.selectShape('triangle');" class="triangle-button">
+                    <svg class="red triangle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 123 123">
+                        <polygon class="triangle" points="61,3 119,119 3,119 61,3"/>
+                    </svg>
+                </div>
+                <div onclick="TTS.selectShape('star');" class="star-button">
+                    <svg class="green star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 123 123">
+                        <polygon class="star" points="61,3 75,44 119,44 84,71 100,119 61,89 22,119 38,71 3,44 47,44 61,3"/>
+                    </svg>
                 </div>
             </div>
-            <div class="light-box"></div>
-        </div>
+
+            <div id="GAMEOVERSCREEN" class="gameOverScreen hide">
+                <div class="game-over-wrapper">
+                    <div class="game-over">
+                        Game Over!
+                    </div>
+
+                    <div id="ENDREASON" class="hide"></div>
+
+                    <div class="end-stats">
+                        <div class="end-stats-mode">Mode:<br /><span id="LEVEL"></span></div>
+                        <div class="end-stats-score">Score:<br /><span id="ENDSCORE"></span></div>
+                        <div class="end-stats-score"><span id="NEWBESTSCORE">NEW!</span>Best:<br /><span id="BESTSCORE"></span></div>
+                    </div>
+
+                    <div class="end-buttons">
+                        <div onclick="TTS.start();" class="tryagain-end-bg">Try Again</div>
+                        <div onclick="TTS.share();" class="share-end-bg">Share</div>
+                    </div>
+
+                    <div onclick="TTS.start();" class="game-over-close">x</div>
+                </div>
+                <div class="light-box"></div>
+            </div>
         </div>
         <div id="HELPSCREEN" class="hide">
             <div onclick="TTS.expandHelpNode(this);" class="help-node help-red help-node-expanded">
@@ -185,17 +212,14 @@
     <!--/END SCREEN-->
 
     <!-- Windows Phone references -->
-    <script src="//Microsoft.Phone.WinJS.2.1/js/base.js"></script>
-    <script src="//Microsoft.Phone.WinJS.2.1/js/ui.js"></script>
+    <!-- <script src="//Microsoft.Phone.WinJS.2.1/js/base.js"></script>
+    <script src="//Microsoft.Phone.WinJS.2.1/js/ui.js"></script> -->
     <!--<script src="/js/winjs-ad.js"></script>-->
 
     <!-- Windows App references -->
     <!--<script src="//Microsoft.WinJS.2.0/js/base.js"></script>
     <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
     <script src="/MSAdvertisingJS/ads/ad.js"></script>-->
-
-    <!-- TouchTheShape references -->
-    <script src="js/default.js"></script>
 
     <audio class="hide" id="CORRECTSOUND" src="audio/blop.wav"></audio>
     <audio class="hide" id="GAMEOVERSOUND" src="audio/punch.wav"></audio>
