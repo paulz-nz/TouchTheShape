@@ -228,7 +228,7 @@ body {
 }
 
 #HELPER {
-    width: 135pt;
+    width: 145pt;
     height: 45pt;
     padding: 8pt;
     position: absolute;
@@ -236,7 +236,7 @@ body {
     border: 2px solid #fff;
     border-radius: 10px;
     bottom: 85pt;
-    left: 120pt;
+    left: 110pt;
     color: #fff;
 }
 
@@ -271,7 +271,7 @@ body {
 
 .end-stats {
     width: 165pt;
-    height: 110pt;
+    height: 125pt;
     margin: 0 auto;
     padding: 10pt;
     /* background-image: linear-gradient(to top, #0061FF, #418AFF); */
@@ -444,7 +444,7 @@ body {
     padding: 12pt;
     padding-top: 6pt;
     /* border: 3pt solid white; */
-    height: 12pt;
+    height: 14pt;
     -webkit-transition: height 0.3s;
     transition: height 0.3s;
     overflow: hidden;
@@ -452,7 +452,7 @@ body {
 }
 
 .help-node-expanded {
-    height: 60pt;
+    height: 70pt;
 }
 
 .help-node-expanded .help-about {
@@ -517,7 +517,7 @@ body {
 }
 
 .help-stats {
-    height: 42pt;
+    height: 50pt;
     margin-top: 20pt;
     background-color: #444;
     background-image: linear-gradient(to bottom, #666, #444);
