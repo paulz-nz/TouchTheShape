@@ -452,7 +452,7 @@ body {
 }
 
 .help-node-expanded {
-    height: 70pt;
+    height: 80pt;
 }
 
 .help-node-expanded .help-about {
@@ -493,7 +493,6 @@ body {
 .help-about {
     clear: both;
     font-size: 10pt;
-    font-weight: lighter;
 }
 
 .help-red {
