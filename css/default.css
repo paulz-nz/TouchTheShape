@@ -41,7 +41,7 @@ body {
 }
 
 .light-theme .logo {
-    -webkit-text-stroke: 6pt #1a2f53;   
+    -webkit-text-stroke: 5pt #1a2f53;   
 }
 
 .screen {
@@ -155,8 +155,8 @@ body {
     /* background-position: center; */
     /* background: url('../images/heading-logo.png') no-repeat; */
     font-size: 24pt;
-    -webkit-text-stroke: 6pt aqua;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    -webkit-text-stroke: 5pt aqua;
+    font-family: Calibri, "Comic Sans MS", "Comic Sans", cursive;
     text-align: center;
 }
 
