@@ -128,7 +128,7 @@ TTS.handleBackButton = function () {
             }
         };
     }
-        // Implement Android
+    // Implement Android
     else {
 
     }
@@ -139,9 +139,20 @@ TTS.share = function () {
     if (typeof (Windows) !== "undefined") {
         Windows.ApplicationModel.DataTransfer.DataTransferManager.showShareUI();
     }
-        // Implement Android/iOS sharing
+    // Implement Android/iOS sharing
     else {
-        window.open("https://facebook.com");
+        var data = {
+            title: "Touch The Shape",
+            text: "I just scored " + TTS._score + " on " + TTS.getMode() + " mode in Touch The Shape!",
+            url: window.location.href
+        };
+
+        if (window.navigator.canShare(data)) {
+            window.navigator.share(data);
+        }
+        else {
+            window.open("https://facebook.com");
+        }
     }
 }
 
@@ -154,7 +165,7 @@ TTS.windowsShareRequest = function (e) {
         url = "http://www.windowsphone.com/en-us/store/app/touch-the-shape/74abce30-e9a9-4e78-9a78-46731f8d4cc0";
         device = "Windows Phone 8.1";
     }
-        // Windows Store
+    // Windows Store
     else {
         url = "http://apps.microsoft.com/windows/en-us/app/touch-the-shape/00489b74-0a3a-429a-b60b-6afc608ba7de";
         device = "Windows 8.1";
@@ -308,15 +319,15 @@ TTS.formatTimePeriod = function (value) {
 
     // Less than a second = display: 450ms
     if (value < 1000) { time = millis; }
-        // Less than a minute = display: 45s 340ms
+    // Less than a minute = display: 45s 340ms
     else if (value < 60 * 1000) { time = seconds + " " + millis; }
-        // Less than an hour = display: 45m 23s
+    // Less than an hour = display: 45m 23s
     else if (value < 60 * 60 * 1000) { time = minutes + " " + seconds; }
-        // Less than a day = display: 14h 18m
+    // Less than a day = display: 14h 18m
     else if (value < 24 * 60 * 60 * 1000) { time = hours + " " + minutes; }
-        // Less than 10 days = display: 6d 11h 15m
+    // Less than 10 days = display: 6d 11h 15m
     else if (value < 10 * 24 * 60 * 60 * 1000) { time = days + " " + hours + " " + minutes; }
-        // More than 10 days = display: 15d 6h
+    // More than 10 days = display: 15d 6h
     else { time = days + " " + hours; }
 
     return time;
@@ -498,7 +509,7 @@ TTS.prompt = function (messageLine1, messageLine2, button1, button2, button1Call
 
         msg.showAsync().done();
     }
-        // Implement Android and iOS
+    // Implement Android and iOS
     else {
         if (confirm(messageLine1 + " " + messageLine2)) {
             button1Callback && button1Callback();
@@ -525,8 +536,8 @@ TTS.resetTimer = function () {
         case 8: time = 1000; break; // Touch The Colour: Easy
         case 9: time = 60000; break; // Touch The Colour: Time Trial
         case 2: time = 1000; break; // Casual
-            //case 3: time = 2000; break; // Touch The Shape (Kids)
-            //case 6: time = 0; break; // Practice (no limit)
+        //case 3: time = 2000; break; // Touch The Shape (Kids)
+        //case 6: time = 0; break; // Practice (no limit)
     }
 
     // Update the global timeLeft var and the user clock
@@ -579,8 +590,7 @@ TTS.selectRandomShape = function () {
     var num = TTS._previousShapeIndex;
 
     // Prevent the same shape showing twice in a row (avoids confusion)
-    while (num == TTS._previousShapeIndex)
-    {
+    while (num == TTS._previousShapeIndex) {
         num = TTS.getRandomInt(4);
     }
 
@@ -872,8 +882,8 @@ TTS.getMode = function () {
         case 5: return "Color: Original";
         case 8: return "Color: Easy";
         case 9: return "Color: Time Trial";
-            //case 3: return "Kids";
-            //case 6: return "Practice";
+        //case 3: return "Kids";
+        //case 6: return "Practice";
     }
 }
 
@@ -906,7 +916,7 @@ TTS.preloadShapes = function () {
 }
 
 
-TTS.initDarkMode = function() {
+TTS.initDarkMode = function () {
     var isDarkMode = TTS.getAppSetting("_isDarkMode");
 
     if (isDarkMode !== undefined && !isDarkMode) {
