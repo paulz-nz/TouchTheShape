@@ -143,7 +143,7 @@ TTS.share = function () {
     else {
         var data = {
             title: "Touch The Shape",
-            text: "I just scored " + TTS._score + " on " + TTS.getMode() + " mode in Touch The Shape!",
+            text: "I just scored " + TTS._score + " in " + TTS.getMode() + " mode on Touch The Shape!",
             url: window.location.href
         };
 
