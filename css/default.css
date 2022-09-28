@@ -1,6 +1,6 @@
 ﻿html,
 body {
-    font-family: "Segoe UI", Calibri, Arial, sans-serif;
+    font-family: "Comic Neue", Calibri, "Segoe UI", Arial, sans-serif;
     width: 100%;
     height: 100%;
     padding: 0;
@@ -16,6 +16,7 @@ body {
     -ms-user-select: none;
     user-select: none;
     cursor: default;
+    font-weight: bold;
 }
 
 .dark-theme {
@@ -41,7 +42,7 @@ body {
 }
 
 .light-theme .logo {
-    -webkit-text-stroke: 5pt #1a2f53;   
+    -webkit-text-stroke: 6pt #1a2f53;   
 }
 
 .screen {
@@ -155,9 +156,9 @@ body {
     /* background-position: center; */
     /* background: url('../images/heading-logo.png') no-repeat; */
     font-size: 28pt;
-    -webkit-text-stroke: 5pt aqua;
-    font-family: Calibri, "Comic Sans MS", "Comic Sans", cursive;
+    -webkit-text-stroke: 6pt aqua;
     text-align: center;
+    font-weight: normal;
 }
 
 .start-buttons {
@@ -296,6 +297,7 @@ body {
 
 .end-stats span {
     font-size: 18pt;
+    font-weight: normal;
 }
 
 #ENDSCORE,
@@ -493,6 +495,7 @@ body {
 .help-about {
     clear: both;
     font-size: 10pt;
+    font-weight: normal;
 }
 
 .help-red {
@@ -575,7 +578,6 @@ body {
     font-size: 20pt;
     cursor: pointer;
     font-weight: lighter;
-    font-family: monospace;
 }
 
 .hide {
@@ -636,4 +638,64 @@ svg.red {
 
 svg.green {
     fill: url(#greengrad);
+}
+
+@font-face {
+    font-family: 'Comic Neue';
+    src: local('Comic Neue Light'), local('ComicNeue-Light'),
+        url('../fonts/ComicNeue-Light.woff2') format('woff2'),
+        url('fonts/ComicNeue-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Comic Neue';
+    src: local('Comic Neue Italic'), local('ComicNeue-Italic'),
+        url('../fonts/ComicNeue-Italic.woff2') format('woff2'),
+        url('../fonts/ComicNeue-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Comic Neue';
+    src: local('Comic Neue Bold'), local('ComicNeue-Bold'),
+        url('../fonts/ComicNeue-Bold.woff2') format('woff2'),
+        url('../fonts/ComicNeue-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Comic Neue';
+    src: local('Comic Neue Bold Italic'), local('ComicNeue-BoldItalic'),
+        url('../fonts/ComicNeue-BoldItalic.woff2') format('woff2'),
+        url('../fonts/ComicNeue-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Comic Neue';
+    src: local('Comic Neue Light Italic'), local('ComicNeue-LightItalic'),
+        url('../fonts/ComicNeue-LightItalic.woff2') format('woff2'),
+        url('../fonts/ComicNeue-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Comic Neue';
+    src: local('Comic Neue Regular'), local('ComicNeue-Regular'),
+        url('../fonts/ComicNeue-Regular.woff2') format('woff2'),
+        url('../fonts/ComicNeue-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
